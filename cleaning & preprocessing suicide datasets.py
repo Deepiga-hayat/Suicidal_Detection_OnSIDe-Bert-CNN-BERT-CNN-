@@ -13,13 +13,15 @@ from symspellpy import SymSpell, Verbosity
      
 
 # Load dataset
-df = pd.read_csv('data/suicide_detection.csv', index_col=0)
+df = pd.read_csv('suicide_detection.csv', index_col=0)
 df.reset_index(drop=True, inplace=True)
 df.head()
-# Defining methods
 
+
+# Defining methods
 nlp = spacy.load("en_core_web_sm") 
 vocab = collections.Counter()
+spell = SpellChecker()
 sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
 dictionary_path = pkg_resources.resource_filename(
     "symspellpy", "frequency_dictionary_en_82_765.txt")
@@ -61,6 +63,15 @@ def remove_special(text):
 def fix_lengthening(text):
     pattern = re.compile(r"(.)\1{2,}")
     return pattern.sub(r"\1\1", text)
+
+def fix_spelling(text):
+    words = text.split()
+    misspelled = spell.unknown(words)
+    return " ".join([
+        spell.correction(w) if (w in misspelled and spell.correction(w) is not None) else w
+        for w in words
+    ])
+
 
 def text_preprocessing(text, accented_chars=True, contractions=True, convert_num=True, 
                        extra_whitespace=True, lemmatization=True, lowercase=True, 
@@ -111,7 +122,10 @@ def text_preprocessing(text, accented_chars=True, contractions=True, convert_num
      
 
 df['cleaned_text'] = df['text'].apply(lambda row: text_preprocessing(row))
-     
+
+#Define cleaned_df properly
+cleaned_df = df.copy()
+
 # Removed anomalous "filler" word 
 cleaned_df['cleaned_text'] = cleaned_df['cleaned_text'].str.replace('filler', '')
      
