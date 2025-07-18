@@ -70,6 +70,83 @@ cd Suicidal_Detection_OnSIDe-Bert-CNN-BERT-CNN-
 2. Install the required dependencies (see Dependencies).
 3. Ensure the dataset downloaded from the source(s) and placed in your data/ folder.
 
+
+## Repository Structure
+
+Suicidal_Detection_OnSIDe-Bert-CNN/
+
+│
+
+├── data/                          # Folder to store raw and cleaned datasets
+
+
+
+│   ├── suicide_final_cleaned.csv
+
+│
+
+├── models/                        # Saved models
+
+│   ├── bert_cnn_model.pth
+
+│
+
+├── src/                           # Source code files (if separated)
+
+│   ├── preprocessing.py
+
+│   ├── eda.py
+
+│   ├── sentiment_analysis.py
+
+│   ├── model_bert.py
+
+│   ├── model_cnn.py
+
+│   ├── model_onside.py
+
+│   ├── train.py
+
+│   ├── evaluate.py
+
+│
+
+├── utils/                         # Utility functions (optional)
+
+│
+
+├── notebooks/                     # Jupyter notebooks for exploration
+
+│
+
+├── requirements.txt               # Dependency list (recommended addition)
+
+├── README.md                      # Project overview and usage instructions
+
+## How to Run the Model
+Once you've cloned the repo and installed dependencies:
+
+1.Download & Prepare Datasets:
+- Download the datasets from the links provided in the README.
+- Place them in the data/ folder.
+
+2.Run Preprocessing:
+- python src/preprocessing.py
+
+3. Perform EDA:
+- python src/eda.py
+
+4. Run Sentiment Analysis:
+- python src/sentiment_analysis.py
+
+5. Train the Model:
+- python src/train.py --model onside
+
+6. Evaluate the Model:
+- python src/evaluate.py --model onside
+[model can be set to bert, cnn, or onside depending on what you want to train/evaluate.]
+
+
 ## Usage
 
 1.  **Preprocessing:**
@@ -135,7 +212,11 @@ k) Spelling correction
 The EDA includes:
 1. Word count distribution for suicidal and non-suicidal texts.
 
-![image](https://github.com/user-attachments/assets/ead8771c-b661-46d5-8130-aeb3245f663c)
+Suicidal : 
+<img width="400" height="490" alt="top_suicidal_lemm_30" src="https://github.com/user-attachments/assets/04ce84f1-bcc6-4859-9dcd-454b763ea6be" />
+
+Non Suicidal : 
+<img width="400" height="490" alt="top_nonsuicidal_lemme_50" src="https://github.com/user-attachments/assets/7152e524-7666-43fd-a4d0-dd466a997ad4" />
 
 2. Top bi-grams for suicidal and non-suicidal texts
 3. Text length distribution
