@@ -70,6 +70,59 @@ cd Suicidal_Detection_OnSIDe-Bert-CNN-BERT-CNN-
 2. Install the required dependencies (see Dependencies).
 3. Ensure the dataset downloaded from the source(s) and placed in your data/ folder.
 
+
+## Repository Structure
+```
+Suicidal_Detection_OnSIDe-Bert-CNN/
+│
+├── data/                          # Folder to store raw and cleaned datasets
+│   └── suicide_final_cleaned.csv
+│
+├── models/                        # Saved models
+│   └── bert_cnn_model.pth
+│
+├── src/                           # Source code files (if separated)
+│   ├── cleaning & preprocessing.py
+│   ├── eda.py
+│   ├── sentiment analysis.py
+│   ├── Bert.py
+│   ├── CNN.py
+│   ├── Hybrid Bert_CNN MOdel.py
+│
+├── utils/                         # Utility functions (optional)
+│
+├── notebooks/                     # Jupyter notebooks for exploration
+│
+├── requirements.txt               # Dependency list (recommended addition)
+└── README.md                      # Project overview and usage instructions
+```
+
+
+## How to Run the Model
+Once you've cloned the repo and installed dependencies:
+
+1.**Download & Prepare Datasets:**
+- Download the datasets from the links provided in the README.
+- Place them in the data/ folder.
+
+2.**Run Preprocessing:**
+- python src/preprocessing.py
+
+3.**Perform EDA:**
+- python src/eda.py
+
+4.**Run Sentiment Analysis:**
+- python src/sentiment_analysis.py
+
+5.**Train the Model:**
+- python src/train.py --model onside
+
+6.**Evaluate the Model:**
+- python src/evaluate.py --model onside
+
+--model can be set to bert, cnn, or onside depending on what you want to train/evaluate.
+
+
 ## Usage
 
 1.  **Preprocessing:**
